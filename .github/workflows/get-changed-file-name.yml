@@ -72,14 +72,14 @@ jobs:
 
       - name: List all added files
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in \${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was added"
           done
 
       - name: List all deleted files
       # "for each" statment
         run: |
-          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
+          for file in \${{ steps.changed-files.outputs.deleted_files }}; do
             echo "$file was deleted"
           done
 
