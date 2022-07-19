@@ -90,7 +90,7 @@ jobs:
           > changed_file_names.txt
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
-            cat "$file" >> changed_file_names.txt;
+            echo "$file" >> changed_file_names.txt;
           done
 
       - name: Upload text for changed_files
@@ -107,7 +107,7 @@ jobs:
           > deleted_file_names.txt
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             echo "$file was deleted"
-            cat "$file" >> deleted_file_names.txt
+            echo "$file" >> deleted_file_names.txt
           done
 
       - name: Upload text for deleted_files
