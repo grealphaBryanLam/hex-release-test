@@ -70,8 +70,18 @@ jobs:
           # Output the absolute path to the changed directories instead of the filenames
           # dir_names: # optional, default is false
 
-      - name: List all changed files
+      - name: List all added files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+            echo "$file was added"
           done
+
+      - name: List all deleted files
+      # "for each" statment
+        run: |
+          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
+            echo "$file was deleted"
+          done
+
+
+
