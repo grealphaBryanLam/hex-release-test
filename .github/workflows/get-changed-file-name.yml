@@ -24,9 +24,11 @@ jobs:
         with:
           fetch-depth: 2 # checkout HEAD^ (last one)
 
-      - name: Changed Files
+      - name: Get Changed Files
       # You may pin to the exact commit or the version.
       # uses: tj-actions/changed-files@b2ee165d6b42ab1740e1037eb93748aad96767c5
+      # id is missing
+        id: changed-files
         uses: tj-actions/changed-files@v23.2
         with:
           # Github token
@@ -71,15 +73,16 @@ jobs:
           # dir_names: # optional, default is false
 
       - name: List all added files
+        # de-reference
         run: |
-          for file in \${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was added"
           done
 
       - name: List all deleted files
-      # "for each" statment
+        # "for each" statment
         run: |
-          for file in \${{ steps.changed-files.outputs.deleted_files }}; do
+          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             echo "$file was deleted"
           done
 
