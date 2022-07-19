@@ -1,0 +1,66 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Get changed file name
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Changed Files
+      # You may pin to the exact commit or the version.
+      # uses: tj-actions/changed-files@b2ee165d6b42ab1740e1037eb93748aad96767c5
+        uses: tj-actions/changed-files@v23.2
+        with:
+          # Github token
+          token: ${{ secrets.GITHUB_TOKEN }} # optional, default is ${{ github.token }}
+          # Split character for output strings
+          separator: ", " # optional, default is ' '  
+          # Include all_old_new_renamed_files output. Note this can generate a large debug output See: #501.
+          # include_all_old_new_renamed_files: # optional, default is false
+          # Split character for old and new filename pairs
+          # old_new_separator: # optional, default is ,
+          # Split character for multiple old and new filename pairs
+          # old_new_files_separator: # optional, default is  
+          # Source file(s) to populate the files input
+          # files_from_source_file: # optional, default is 
+          # Check for changes using only this list of files (Defaults to the entire repo)
+          # files: # optional, default is 
+          # Separator used to split the files input
+          # files_separator: # optional, default is 
+
+          # Ignore changes to this list of files
+          # files_ignore: # optional, default is 
+          # Separator used to split the files-ignore input
+          # files_ignore_separator: # optional, default is 
+
+          # Source file(s) to populate the files-ignore input
+          # files_ignore_from_source_file: # optional, default is 
+          # Specify a current commit SHA used for comparing changes
+          # sha: # default is ${{ github.sha }}
+          # Specify a base commit SHA on used for comparing changes
+          # base_sha: # optional
+          # Use the last commit on the remote branch as the base_sha for push event.
+          # since_last_remote_commit: # optional, default is false
+          # Specify a relative path under $GITHUB_WORKSPACE to locate the repository
+          # path: # optional, default is .
+          # Finds best common ancestor between two commits to use in a three-way merge as the base_sha
+          # use_fork_point: # optional, default is false
+          # Output filenames completely verbatim by setting this to false
+          # quotepath: # optional, default is true
+          # Exclude changes outside the current directory and show pathnames relative to it
+          # diff_relative: # optional
+          # Output the absolute path to the changed directories instead of the filenames
+          # dir_names: # optional, default is false
