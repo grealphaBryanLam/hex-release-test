@@ -80,8 +80,9 @@ jobs:
           # diff_relative: # optional
           # Output the absolute path to the changed directories instead of the filenames
           # dir_names: # optional, default is false
-
-        # de-reference
+      
+      - name: List all changed files
+        # de-reference -> $
         run: |
           pwd
           touch changed_file_names.txt
@@ -97,7 +98,6 @@ jobs:
           name: changed-files-name # name of artifact
           path: path/to/artifacts/changed_files-name.txt
 
-
       - name: List all deleted files
         # "for each" statment
         run: |
@@ -108,7 +108,7 @@ jobs:
             echo "$file was deleted"
             cat $file >> deleted_file_names.txt
           done
-          
+
       - name: Upload text for deleted_files
         uses: actions/upload-artifact@v3
         with: 
