@@ -12,8 +12,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # workflow job
+  getChangedFiles: 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -22,8 +22,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
-          
+          fetch-depth: 2 # checkout HEAD^ (last one)
+
       - name: Changed Files
       # You may pin to the exact commit or the version.
       # uses: tj-actions/changed-files@b2ee165d6b42ab1740e1037eb93748aad96767c5
@@ -69,3 +69,9 @@ jobs:
           # diff_relative: # optional
           # Output the absolute path to the changed directories instead of the filenames
           # dir_names: # optional, default is false
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
