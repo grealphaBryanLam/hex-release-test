@@ -25,8 +25,8 @@ jobs:
           fetch-depth: 2 # checkout HEAD^ (last one)
         # create new dir for GitHub Action Artifacts
         # make dir in the new runner directory
-        run: |
-        mkdir -p $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/
+        # run: |
+        # mkdir -p $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/
 
       - name: Get Changed Files
       # You may pin to the exact commit or the version.
