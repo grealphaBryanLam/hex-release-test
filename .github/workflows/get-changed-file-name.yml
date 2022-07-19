@@ -28,6 +28,11 @@ jobs:
         # run: |
         # mkdir -p $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/
 
+      - name: Create artifacts file
+        run: |
+          mkdir path/to/artifacts/changed_files_name.txt
+          mkdir path/to/artifacts/deleted_files_name.txt
+
       - name: Get Changed Files
       # You may pin to the exact commit or the version.
       # uses: tj-actions/changed-files@b2ee165d6b42ab1740e1037eb93748aad96767c5
@@ -76,7 +81,6 @@ jobs:
           # Output the absolute path to the changed directories instead of the filenames
           # dir_names: # optional, default is false
 
-      - name: List all changed files
         # de-reference
         run: |
           pwd
@@ -86,14 +90,15 @@ jobs:
             echo "$file was changed"
             cat $file >> changed_file_names.txt;
           done
-        - name: Upload Artifact
-          uses: actions/upload-artifact@v3
-          with: 
-            name: changed-files # name of artifact
-            path: output/changed_file.txt
+
+      - name: Upload text for changed_files
+        uses: actions/upload-artifact@v3
+        with: 
+          name: changed-files-name # name of artifact
+          path: path/to/artifacts/changed_files-name.txt
 
 
-      - name: List all deleted files/v2
+      - name: List all deleted files
         # "for each" statment
         run: |
           pwd
@@ -103,16 +108,12 @@ jobs:
             echo "$file was deleted"
             cat $file >> deleted_file_names.txt
           done
-        - name: Upload Artifact
-          uses: actions/upload-artifact@v3
-          with: 
-            name: deleted-files # name of artifact
-            path: output/deleted_file.txt
-
-      # save(upload) the data: shared variable
-      - name: upload artifact
-        
-        run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/
+          
+      - name: Upload text for deleted_files
+        uses: actions/upload-artifact@v3
+        with: 
+          name: deleted-files-name # name of artifact
+          path: path/to/artifacts/deleted_files_names.txt
 
 
 
