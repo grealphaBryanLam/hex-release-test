@@ -34,7 +34,7 @@ jobs:
           # Github token
           token: ${{ secrets.GITHUB_TOKEN }} # optional, default is ${{ github.token }}
           # Split character for output strings
-          separator: ", " # optional, default is ' '  
+          # separator: # optional, default is ' '  
           # Include all_old_new_renamed_files output. Note this can generate a large debug output See: #501.
           # include_all_old_new_renamed_files: # optional, default is false
           # Split character for old and new filename pairs
@@ -72,18 +72,26 @@ jobs:
           # Output the absolute path to the changed directories instead of the filenames
           # dir_names: # optional, default is false
 
-      - name: List all added files
+      - name: List all changed files
         # de-reference
         run: |
+          pwd
+          touch changed_file_names.txt
+          > changed_file_names.txt
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was added"
+            echo "$file was changed"
+            cat $file >> changed_file_names.txt
           done
 
       - name: List all deleted files
         # "for each" statment
         run: |
+          pwd
+          touch deleted_file_names.txt
+          > deleted_file_names.txt
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             echo "$file was deleted"
+            cat $file >> deleted_file_names.txt
           done
 
 
