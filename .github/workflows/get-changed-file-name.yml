@@ -148,6 +148,7 @@ jobs:
       # get the correct result
       # grep -> search the content of a file
       # grep return 1 to indicate no result is found
+      # cut command: delimiter should be a single character 
       - name: filter the new firmware data hex file
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
