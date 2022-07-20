@@ -86,12 +86,12 @@ jobs:
       - name: List all changed files
         # check the directory
         run: |
+          cd path/to/artifacts/
           pwd
-          ls -F path/to/artifacts/
           > changed_file_names.txt
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
-            echo "$file" >> changed_file_names.txt;
+            echo "$file" >> changed_files_name.txt;
           done
 
       - name: Upload text for changed_files
@@ -103,12 +103,12 @@ jobs:
       - name: List all deleted files
         # "for each" statment
         run: |
+          cd path/to/artifacts/
           pwd
-          ls -F -F path/to/artifacts/
-          > deleted_file_names.txt
+          > deleted_files_name.txt
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             echo "$file was deleted"
-            echo "$file" >> deleted_file_names.txt
+            echo "$file" >> deleted_files_name.txt
           done
 
       - name: Upload text for deleted_files
@@ -116,7 +116,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: deleted-files-name # name of artifact
-          path: path/to/artifacts/deleted_files_names.txt
+          path: path/to/artifacts/deleted_files_name.txt
 
 
 
