@@ -33,6 +33,7 @@ jobs:
           mkdir -p path/to/artifacts/
           touch path/to/artifacts/changed_files_name.txt
           touch path/to/artifacts/deleted_files_name.txt
+          ls -F path/to/artifacts/
 
       - name: Get Changed Files
       # You may pin to the exact commit or the version.
@@ -83,10 +84,10 @@ jobs:
           # dir_names: # optional, default is false
       
       - name: List all changed files
-        # de-reference -> $
+        # check the directory
         run: |
           pwd
-          touch changed_file_names.txt
+          ls -F path/to/artifacts/
           > changed_file_names.txt
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
@@ -103,7 +104,7 @@ jobs:
         # "for each" statment
         run: |
           pwd
-          touch deleted_file_names.txt
+          ls -F -F path/to/artifacts/
           > deleted_file_names.txt
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             echo "$file was deleted"
@@ -111,6 +112,7 @@ jobs:
           done
 
       - name: Upload text for deleted_files
+      # file not found
         uses: actions/upload-artifact@v3
         with: 
           name: deleted-files-name # name of artifact
