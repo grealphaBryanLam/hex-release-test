@@ -146,13 +146,13 @@ jobs:
           ls -F
       
       # get the correct result
-      # grep -> search the content of a file 
+      # grep -> search the content of a file
+      # grep return 1 to indicate no result is found
       - name: filter the new firmware data hex file
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
           ls
-          # pattern = /.\.hex/
-          grep -i ".\.hex" changed_files_name.txt
+          grep -i ".*\.hex" changed_files_name.txt
 
 
 
