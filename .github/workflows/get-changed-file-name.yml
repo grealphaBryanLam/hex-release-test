@@ -131,7 +131,7 @@ jobs:
     
       - name: print the artifact download path
         run: |
-          echo ${{ steps.download.outputs.download-path }}
+          echo ${{ getChangedFiles.steps.changed-files.outputs.download-path }}
         
 
 
