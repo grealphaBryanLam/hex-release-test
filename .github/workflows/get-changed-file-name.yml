@@ -153,7 +153,5 @@ jobs:
       - name: filter the new firmware data hex file
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
-          ls
-          len = #(grep -i ".*\.hex" changed_files_name.txt) 
-          grep -i ".*\.hex" changed_files_name.txt
-          cut -b -len changed_files_name.txt
+          ls 
+          grep -i ".*\.hex" changed_files_name.txt | cut -b -(#(grep -i ".*\.hex" changed_files_name.txt) - 4)
