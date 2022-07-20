@@ -148,7 +148,7 @@ jobs:
       - name: filter the new firmware data hex file
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
-          grep -i ".hex" changed_files_name.txt | echo
+          grep -i ".hex" changed_files_name.txt
 
 
 
