@@ -119,15 +119,18 @@ jobs:
           path: path/to/artifacts/deleted_files_name.txt
     
     getFileVersion:
-      - name: download changed file name
-        uses: action/download-artifact@v3
-        with:
-          name: changed-files-name
+      name: get file version
+      needs: getChangedFiles
+      steps:
+        - name: download changed file name
+          uses: action/download-artifact@v3
+          with:
+            name: changed-files-name
       
-      - name: print the artifact download path
-        run: |
-          echo ${{ steps.download.outputs.download-path }}
-      
+        - name: print the artifact download path
+          run: |
+            echo ${{ steps.download.outputs.download-path }}
+        
 
 
 
