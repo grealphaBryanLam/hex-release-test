@@ -148,14 +148,12 @@ jobs:
       # get the correct result
       # grep -> search the content of a file
       # grep return 1 to indicate no result is found
-      # cut command: delimiter should be a single character 
+      # cut command: delimiter should be a single character
+      # ${VAR::-n} -> remove last n character(s)
       - name: filter the new firmware data hex file
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
           ls
-          grep -i ".*\.hex" changed_files_name.txt | cut -d "ver" 
-
-
-
-
-
+          item = $(grep -i ".*\.hex" changed_files_name.txt)
+          temp = ${item::-4}
+          echo $temp
