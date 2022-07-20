@@ -98,7 +98,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: changed-files-name # name of artifact
-          path: path/to/artifacts/changed_files-name.txt
+          path: path/to/artifacts/changed_files_name.txt
 
       - name: List all deleted files
         # "for each" statment
