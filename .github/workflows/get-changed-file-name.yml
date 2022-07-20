@@ -125,7 +125,7 @@ jobs:
     needs: getChangedFiles
     steps:
       - name: download changed file name
-        uses: action/download-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: changed-files-name
     
