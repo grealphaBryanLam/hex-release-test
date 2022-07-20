@@ -133,7 +133,11 @@ jobs:
       - name: print the artifact download path
         run: |
           echo ${{ steps.download-artifact.outputs.download-path }}
-        
+      
+      - name: list the files in the artifact download path
+        run:
+          cd ${{ steps.download-artifact.outputs.download-path }}
+          ls -F
 
 
 
