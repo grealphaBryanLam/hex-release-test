@@ -119,6 +119,8 @@ jobs:
           path: path/to/artifacts/deleted_files_name.txt
     
   getFileVersion:
+    # reuired parameter: runs-on 
+    runs-on: ubuntu-latest
     name: get file version
     needs: getChangedFiles
     steps:
