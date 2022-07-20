@@ -125,13 +125,14 @@ jobs:
     needs: getChangedFiles
     steps:
       - name: download changed file name
+        id: download-artifact
         uses: actions/download-artifact@v3
         with:
           name: changed-files-name
     
       - name: print the artifact download path
         run: |
-          echo ${{ getChangedFiles.steps.changed-files.outputs.download-path }}
+          echo ${{ steps.download-artifact.outputs.download-path }}
         
 
 
