@@ -156,7 +156,7 @@ jobs:
       - name: filter the new firmware data hex filename
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
-          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 |  awk '{FS="ver"} ; {print $2}'
+          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 | awk 'BEGIN{FS="ver"} {print $2}'
       
       # use awk command to trim version number from filename
       # - name: test awk
