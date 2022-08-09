@@ -154,4 +154,4 @@ jobs:
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
           ls 
-          grep -i ".*\.hex" changed_files_name.txt | cut -b -(#(grep -i ".*\.hex" changed_files_name.txt) - 4)
+          grep ".hex$" changed_files_name.txt
