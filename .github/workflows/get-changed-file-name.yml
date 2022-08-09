@@ -154,13 +154,14 @@ jobs:
       #
       # cut command: delimiter should be a single character
       # cut option: -f divide the line into fields, index starts at 1
-      #
+      # 
       # awk: trim the field
       # option: FS 
+      # 
       - name: filter the new firmware data hex filename
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
-          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 | res = ${awk 'BEGIN{FS="ver"} {print $2}'}
+          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 | awk 'BEGIN{FS="ver"} {print $2}' | res = $(</dev/stdin)
           echo $res | cut -d ' ' -f 1
           echo $res | cut -d ' ' -f 2
           echo $res | cut -d ' ' -f 3
