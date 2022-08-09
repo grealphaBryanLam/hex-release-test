@@ -145,6 +145,8 @@ jobs:
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
           ls -F
       
+      # ensure correct naming
+      
       # get the correct result
       # grep -> search the content of a file
       # grep option: -h to show the matched line(s) instead of file name
@@ -154,10 +156,10 @@ jobs:
       - name: filter the new firmware data hex filename
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
-          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1
-
-      - name: test awk
-        run: |
-          cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
-          awk '{print}' changed_files_name.txt
-
+          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 |  awk '{FS="ver"} ; {print $2}'
+      
+      # use awk command to trim version number from filename
+      # - name: test awk
+      #   run: |
+      #     cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
+      #     awk '{FS="ver"} ; {print $2}' changed_files_name.txt
