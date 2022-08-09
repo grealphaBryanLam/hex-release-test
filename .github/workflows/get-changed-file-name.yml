@@ -153,6 +153,5 @@ jobs:
       # ${VAR::-n} -> remove last n character(s)
       - name: filter the new firmware data hex file
         run: |
-          cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
-          ls 
+          cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
           grep -h ".hex$" changed_files_name.txt
