@@ -147,11 +147,17 @@ jobs:
       
       # get the correct result
       # grep -> search the content of a file
-      # grep option -h to show the matched line(s) instead of file name
+      # grep option: -h to show the matched line(s) instead of file name
       # grep return 1 to indicate no result is found
       # cut command: delimiter should be a single character
-      # ${VAR::-n} -> remove last n character(s)
-      - name: filter the new firmware data hex file
+      # cut option: -f divide the line into fields, index starts at 1 
+      - name: filter the new firmware data hex filename
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
-          grep -h ".hex$" changed_files_name.txt
+          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1
+
+      - name: test awk
+        run: |
+          cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
+          awk '{print}' changed_files_name.txt
+
