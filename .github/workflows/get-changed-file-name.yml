@@ -147,6 +147,7 @@ jobs:
       
       # get the correct result
       # grep -> search the content of a file
+      # grep option -h to show the matched line(s) instead of file name
       # grep return 1 to indicate no result is found
       # cut command: delimiter should be a single character
       # ${VAR::-n} -> remove last n character(s)
@@ -154,4 +155,4 @@ jobs:
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }}
           ls 
-          grep ".hex$" changed_files_name.txt
+          grep -h ".hex$" changed_files_name.txt
