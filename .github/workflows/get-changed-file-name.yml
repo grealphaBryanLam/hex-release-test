@@ -151,12 +151,20 @@ jobs:
       # grep -> search the content of a file
       # grep option: -h to show the matched line(s) instead of file name
       # grep return 1 to indicate no result is found
+      #
       # cut command: delimiter should be a single character
-      # cut option: -f divide the line into fields, index starts at 1 
+      # cut option: -f divide the line into fields, index starts at 1
+      #
+      # awk: trim the field
+      # option: FS 
       - name: filter the new firmware data hex filename
         run: |
           cd ${{ steps.download-artifact-changed-files.outputs.download-path }} 
-          grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 | awk 'BEGIN{FS="ver"} {print $2}'
+          res = ${grep -h ".hex" changed_files_name.txt | cut -d "." -f 1 | awk 'BEGIN{FS="ver"} {print $2}'}
+          echo $res
+          cut -d ' ' -f 1
+          cut -d ' ' -f 2
+          cut -d ' ' -f 3
       
       # use awk command to trim version number from filename
       # - name: test awk
