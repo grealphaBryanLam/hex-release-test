@@ -175,7 +175,7 @@ jobs:
   
   # TODO: have to share the result from environmental variables (or any other means)
   #       .env might be cannot alter
-  create tag:
+  createTag:
     name: add tag
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
